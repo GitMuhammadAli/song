@@ -29,12 +29,6 @@ export default async function Home() {
           >
             Register
           </Link>
-          <Link
-            href="/api-test"
-            className="block w-full border border-gray-300 py-3 px-4 text-center hover:bg-gray-50"
-          >
-            API Testing UI
-          </Link>
         </div>
       </div>
     </div>
