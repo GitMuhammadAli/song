@@ -22,7 +22,7 @@ export default function RegisterPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ email, password }),
       })
 
       const data = await response.json()
@@ -32,7 +32,6 @@ export default function RegisterPage() {
         return
       }
 
-      // Redirect to login page after successful registration
       router.push('/login?registered=true')
     } catch (err) {
       setError('An error occurred. Please try again.')

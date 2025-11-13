@@ -33,7 +33,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Create a simple token (base64 encoded user info)
     const token = Buffer.from(
       JSON.stringify({
         userId: user.id,

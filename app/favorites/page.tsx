@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface FavoriteSong {
   id: string
@@ -111,15 +112,26 @@ export default function FavoritesPage() {
         <div className="border border-gray-300 p-6 mb-6">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Favorite Songs</h1>
-            <button
-              onClick={() => signOut({ callbackUrl: '/' })}
-              className="border border-gray-300 px-4 py-2 hover:bg-gray-50"
-            >
-              Logout
-            </button>
+            <div className="flex gap-2">
+              <Link
+                href="/songs"
+                className="border border-gray-300 px-4 py-2 hover:bg-gray-50"
+              >
+                Browse Songs
+              </Link>
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="border border-gray-300 px-4 py-2 hover:bg-gray-50"
+              >
+                Logout
+              </button>
+            </div>
           </div>
           <p className="mb-4">
             Welcome, {session.user?.email || session.user?.name || 'User'}!
+          </p>
+          <p className="text-gray-600 mb-4 text-sm">
+            You can add songs manually below, or browse our song list and add favorites from there.
           </p>
 
           <form onSubmit={handleSubmit} className="mb-6">

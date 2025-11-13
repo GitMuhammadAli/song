@@ -3,9 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { prisma } from '@/prisma/client'
 
-// Helper function to get user ID from Bearer token or NextAuth session
 async function getUserId(request: Request) {
-  // Try Authorization header (for API testing with Bearer token)
   const authHeader = request.headers.get('authorization')
   if (authHeader && authHeader.startsWith('Bearer ')) {
     try {
@@ -13,11 +11,9 @@ async function getUserId(request: Request) {
       const decoded = JSON.parse(Buffer.from(token, 'base64').toString())
       return decoded.userId
     } catch (e) {
-      // Invalid token format, continue to session check
     }
   }
 
-  // Fall back to NextAuth session (for browser)
   const session = await getServerSession(authOptions)
   return session?.user?.id
 }
